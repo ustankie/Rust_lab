@@ -1,5 +1,19 @@
 fn main() {
-    let array = [1, 2, 3, 4, 5];
-    let array_slice : &[i32] = &array[2..4];
-    println!("{:?}", array_slice);
+    let mut s:&str = ("text that illustrates slices");
+    let first = first_word(&s[..]);
+    
+    // s.clear(); //tries to modify text
+ 
+    println!("{first}");
 }   
+ 
+fn first_word(s : &str) -> &str {
+    let bytes = s.as_bytes();
+ 
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[..i]
+        }
+    }
+    s
+}
